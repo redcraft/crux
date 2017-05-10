@@ -10,6 +10,8 @@ RUN add-apt-repository -y ppa:certbot/certbot && \
 rm -rf /var/lib/apt/lists/*
 
 COPY ssl-params.conf /etc/nginx/snippets/ssl-params.conf
+COPY certbot /etc/cron.daily
+RUN chmod +x /etc/cron.daily/certbot
 
 VOLUME ["/etc/nginx/sites-available/", "/etc/nginx/sites-enabled/", "/etc/letsencrypt/"]
 
